@@ -23,38 +23,42 @@ node scripts/decompile-all.js <clone_dir> <out_dir>
 
 After decompilation, create a runnable, human-maintainable project:
 
-1. Copy the clone's static assets to the project root (so `/assets`, `/webgl`,
-   etc. resolve).
+1. Create `public/` and move ALL static assets there (`assets/`, `webgl/`,
+   `audio/`, `lottie/`, `images/`, `video/`, locale route folders, payloads,
+   `index.html`-adjacent files). Keep `index.html`, `package.json`,
+   `vite.config.js`, `README.md`, `.gitignore`, and `src/` at the project root.
+   Move `index.html` back to the project root (Vite needs it as the entry).
+   **Important:** pre-built bundles (e.g. `assets/DzIV7Ypb.js`) must live under
+   `public/` so Vite copies them verbatim instead of trying to bundle them
+   (which fails with "Identifier '__vitePreload' has already been declared").
 2. Add `package.json` with `dev`/`build`/`preview` scripts using Vite.
 3. Add `vite.config.js` (port 5173, vue plugin).
 4. Keep `index.html` as the original SSR shell (entry point loads the bundle).
 5. Put beautified bundles in `src/bundles/` and component stubs in
    `src/components/`.
 6. Add `src/main.js` (beautified entry) and `README.md` with run instructions.
-7. Verify with `npm install && npm run dev` — must serve on localhost:5173.
+7. Verify with `npm install && npm run dev` (serves on localhost:5173) and
+   `npm run build` (must succeed and produce `dist/`).
 
-See the Hatom clone's `maintainable-source/` folder for a working example.
+See the Hatom repo (https://github.com/Adityabhardwaj1234/Hatom) for a working
+example.
 
 ## Run the reconstructed project
 
 ```bash
-cd maintainable-source
+cd <project>
 npm install
-npm run dev
+npm run dev      # http://localhost:5173
+npm run build    # produces dist/
 ```
-
-Opens http://localhost:5173. The app runs from the production bundle served as
-static assets, so it loads exactly like the original clone, while the beautified
-bundles in `src/` provide a readable reference.
 
 ## Steps (full pipeline)
 
 1. Run REA `analyze_javascript_application` on the clone for the module graph.
-2. Run `decompile-all.js` to produce a readable project.
-3. Build the maintainable scaffold (above).
-4. Verify with `npm run dev`.
-5. Read `normalized_result.semantic_graph` and `locations` to refine module
-   boundaries.
+2. Run `decompile-all.js` to produce beautified bundles.
+3. Build the maintainable scaffold (above), placing assets under `public/`.
+4. Verify with `npm run dev` and `npm run build`.
+5. Refine module boundaries using REA's semantic graph.
 6. Deobfuscate/format further with `prettier` / `js-beautify` if needed.
 7. For each original module, create `src/<original-path>`.
 8. Map imports/exports from the graph's edges.
@@ -71,6 +75,7 @@ npm i -g js-beautify prettier
 - Reconstructed source is not the original; never claim it is.
 - Many modules are inlined/bundled; boundaries are inferred.
 - Do not commit reconstructed source as if it were original.
+- Do not leave `node_modules/` in the commit (add to .gitignore).
 
 ## When NOT to do this
 
