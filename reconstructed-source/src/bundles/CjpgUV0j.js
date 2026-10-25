@@ -1,0 +1,3314 @@
+import {
+  r as p,
+  f as se,
+  n as Ne,
+  g as He,
+  p as pe,
+  _ as W,
+  h as A,
+  L as Ze,
+  C as ie,
+  o as d,
+  d as _,
+  c as V,
+  m as q,
+  b as o,
+  i as Ke,
+  u as Ye,
+  S as Ge,
+  j as X,
+  k as De,
+  t as H,
+  l as I,
+  e as oe,
+  q as c,
+  s as ue,
+  v as x,
+  T as re,
+  F as N,
+  x as K,
+  y as Z,
+  z as P,
+  A as Je,
+  B as Xe,
+  D as ae,
+  E as ne,
+  G as Q,
+  H as Qe,
+  V as et,
+  I as tt,
+  J as st,
+  K as be,
+  M as ot,
+  O as at,
+  P as Ie,
+  Q as Oe,
+  R as nt,
+  U as ye,
+  a as ke,
+  W as _e,
+  X as xe,
+  Y as we,
+  Z as te,
+  $ as fe,
+  a0 as Be,
+  a1 as $e,
+  a2 as Se,
+  a3 as Me,
+  a4 as lt,
+  a5 as rt,
+  a6 as he,
+  a7 as it,
+  a8 as ct,
+  a9 as ut,
+  aa as ge,
+  ab as dt,
+  ac as mt,
+  ad as ve,
+  ae as ft,
+} from "./DzIV7Ypb.js";
+import { M as de, A as Ae, a as pt } from "./BCIzJFoy.js";
+function z(e, t = null) {
+  const s = p(!1),
+    n = p(!1),
+    a = p(!0),
+    l = p(0);
+  let r;
+  function i() {
+    if (!e.value) return;
+    const u = Array.isArray(e.value) ? e.value[0] : e.value;
+    if (u instanceof HTMLElement) return u;
+    if (u.$el instanceof HTMLElement) return u.$el;
+    const y = Object.keys(u.$refs);
+    return y.length > 0 ? u.$refs[y[0]] : null;
+  }
+  (se(() => {
+    ((r = new IntersectionObserver(m)),
+      requestAnimationFrame(() => {
+        Ne(() => {
+          const u = i();
+          u && r.observe(u);
+        });
+      }));
+  }),
+    He(() => {
+      const u = i();
+      u && r.unobserve(u);
+    }));
+  function m(u) {
+    const { isIntersecting: y, boundingClientRect: f } = u[0];
+    ((l.value = f.top),
+      (s.value = y),
+      (n.value = !y && l.value < 0),
+      (a.value = !y && l.value >= 0));
+    const w = i();
+    (w && w.classList.toggle("isInViewport", s.value), t && t(w));
+  }
+  return { isInViewport: s, aboveViewport: n, underViewport: a, rectTop: l };
+}
+const ht = pe("/video/icon_egg_about.png"),
+  gt = pe("/video/icon_egg_about.mp4"),
+  vt = { class: "textParagraph" },
+  bt = "p",
+  yt = {
+    __name: "TextParagraphElt",
+    props: {
+      text: { type: String, default: null },
+      show: { type: Boolean, default: !0 },
+      isSmall: { type: Boolean, default: !1 },
+      isFluid: { type: Boolean, default: !1 },
+      anim: { type: Object, default: () => ({ type: "none" }) },
+    },
+    setup(e) {
+      const t = e,
+        s = A(() => {
+          const { type: n = "none", ...a } = t.anim,
+            l = { tag: bt, props: {} };
+          return (
+            n === "none"
+              ? (Object.assign(l.props, { innerHTML: t.text }),
+                t.show || (l.props.style = "display: none;"))
+              : (n === "slide" && (l.tag = Ze),
+                n === "color" && (l.tag = ie),
+                Object.assign(l.props, {
+                  params: a,
+                  text: t.text,
+                  show: t.show,
+                })),
+            l
+          );
+        });
+      return (n, a) => (
+        d(),
+        _("div", vt, [
+          (d(),
+          V(
+            Ke(o(s).tag),
+            q(o(s).props, {
+              class: [
+                "textParagraph--text",
+                { isSmall: e.isSmall, isFluid: e.isFluid },
+              ],
+            }),
+            null,
+            16,
+            ["class"],
+          )),
+        ])
+      );
+    },
+  },
+  me = W(yt, [["__scopeId", "data-v-7a95ce7e"]]),
+  kt = {
+    __name: "AboutTitle",
+    props: {
+      content: { type: String, required: !0 },
+      show: { type: Boolean, default: !0 },
+    },
+    setup(e) {
+      const t = e,
+        s = Ye(),
+        n = {
+          zh: { split: "chars", stagger: 0.15 },
+          default: { split: "words", stagger: 1 },
+        },
+        a = s.lang in n ? n[s.lang] : n.default,
+        l = p();
+      let r, i;
+      const m = () => {
+          I.set(r[a.split], { transform: "", opacity: "" });
+          for (let f = 0; f < r[a.split].length; f++) {
+            const w = r[a.split][f];
+            w.style.willChange = "transform";
+          }
+        },
+        u = () => {
+          const f = I.timeline();
+          return (
+            f.from(l.value, { scale: 1.1, duration: 4, ease: "power4.out" }, 0),
+            f.from(
+              r[a.split],
+              {
+                x: 40,
+                stagger: 0.075 * a.stagger,
+                duration: 1.5,
+                ease: "power4.out",
+              },
+              0,
+            ),
+            f.from(
+              r[a.split],
+              {
+                opacity: 0,
+                stagger: 0.075 * a.stagger,
+                duration: 2,
+                ease: "power4.out",
+              },
+              0,
+            ),
+            f.call(
+              () => {
+                for (let w = 0; w < r[a.split].length; w++) {
+                  const M = r[a.split][w];
+                  M.style.willChange = "";
+                }
+              },
+              null,
+              "+=0.5",
+            ),
+            f
+          );
+        },
+        y = () => {
+          const f = I.timeline();
+          return (
+            f.to(
+              r[a.split],
+              { opacity: 0, duration: 0.3, ease: "sine.out" },
+              0,
+            ),
+            f
+          );
+        };
+      return (
+        se(() => {
+          ((r = new Ge(l.value, { type: a.split })),
+            X(
+              () => t.show,
+              (f) => {
+                (i == null || i.kill(), f ? (m(), (i = u())) : (i = y()));
+              },
+              { immediate: !0 },
+            ));
+        }),
+        De(() => {
+          r.revert();
+        }),
+        (f, w) => (
+          d(),
+          _(
+            "h1",
+            { ref_key: "title", ref: l, class: "aboutTitle" },
+            H(e.content),
+            513,
+          )
+        )
+      );
+    },
+  },
+  Re = W(kt, [["__scopeId", "data-v-38f34346"]]),
+  _t = pe("/video/hatom_symbol.mp4"),
+  xt = pe("/video/hatom_symbol.png"),
+  wt = { class: "logoVideo" },
+  Bt = {
+    __name: "LogoVideo",
+    setup(e) {
+      const t = p(),
+        s = z(t),
+        n = oe();
+      return (
+        se(() => {
+          X(
+            s.underViewport,
+            (a) => {
+              const l = Array.isArray(t.value) ? t.value[0] : t.value;
+              l && (a ? (l.pause(), (l.currentTime = 0)) : l.play());
+            },
+            { immediate: !0 },
+          );
+        }),
+        (a, l) => (
+          d(),
+          _("div", wt, [
+            c(
+              "video",
+              {
+                ref_key: "logoVideo",
+                ref: t,
+                style: ue({
+                  visibility:
+                    o(n).bg.isShowing || o(n).bg.isHiding
+                      ? "hidden"
+                      : "visible",
+                }),
+                src: _t,
+                muted: "",
+                playsinline: "",
+              },
+              null,
+              4,
+            ),
+            c(
+              "img",
+              {
+                style: ue({
+                  visibility:
+                    o(n).bg.isShowing || o(n).bg.isHiding
+                      ? "visible"
+                      : "hidden",
+                }),
+                src: xt,
+              },
+              null,
+              4,
+            ),
+          ])
+        )
+      );
+    },
+  },
+  We = W(Bt, [["__scopeId", "data-v-cea86638"]]),
+  Ue = (e) => (Je("data-v-1e1ffe31"), (e = e()), Xe(), e),
+  $t = ["id"],
+  St = { class: "heroBlock" },
+  Mt = { class: "windowBlock" },
+  Rt = Ue(() => c("div", { class: "lineLeft" }, null, -1)),
+  Ct = Ue(() => c("div", { class: "lineRight" }, null, -1)),
+  Tt = { class: "textWrapper" },
+  Ft = { class: "eggFrame" },
+  Vt = {
+    __name: "StoryBlock",
+    props: {
+      title: { type: String, default: null },
+      anchor: { type: String, default: "" },
+      show: { type: Boolean, default: !0 },
+      subtitle: { type: String, default: null },
+      blocks: { type: Array, default: () => [] },
+    },
+    setup(e) {
+      const t = e,
+        s = oe(),
+        n = p(),
+        a = p(),
+        l = p(),
+        r = p(),
+        i = p(),
+        m = p(),
+        u = z(n),
+        y = z(a),
+        f = z(l),
+        w = z(r),
+        M = z(i),
+        T = z(m),
+        B = A(() =>
+          t.blocks.map((R, O) => {
+            const S = { ...R };
+            return (
+              (S.prevBlockType = O > 0 ? t.blocks[O - 1].type : null),
+              S.textLeft && (S.textLeft = k(S.textLeft)),
+              S.textRight && (S.textRight = k(S.textRight)),
+              S
+            );
+          }),
+        );
+      function k(R) {
+        return R.split("<br/><br/>");
+      }
+      return (
+        se(() => {
+          X(
+            T.underViewport,
+            (R) => {
+              const O = Array.isArray(m.value) ? m.value[0] : m.value;
+              O && (R ? (O.pause(), (O.currentTime = 0)) : O.play());
+            },
+            { immediate: !0 },
+          );
+        }),
+        (R, O) => (
+          d(),
+          _(
+            "div",
+            { id: t.anchor, ref: "storyBlockRef", class: "storyBlock" },
+            [
+              c("section", St, [
+                x(
+                  Re,
+                  { class: "title", content: e.title, show: t.show },
+                  null,
+                  8,
+                  ["content", "show"],
+                ),
+              ]),
+              c("section", Mt, [
+                Rt,
+                Ct,
+                x(
+                  re,
+                  {
+                    ref_key: "text1",
+                    ref: n,
+                    class: "textIndication",
+                    text: e.subtitle,
+                    show: !o(u).underViewport.value,
+                    anim: { type: "color" },
+                  },
+                  null,
+                  8,
+                  ["text", "show"],
+                ),
+              ]),
+              (d(!0),
+              _(
+                N,
+                null,
+                K(o(B), (S, C) => {
+                  var L;
+                  return (
+                    d(),
+                    _(
+                      N,
+                      null,
+                      [
+                        S.type == "split"
+                          ? (d(),
+                            _(
+                              "section",
+                              {
+                                key: C,
+                                class: Z({
+                                  splitBlock: !0,
+                                  borderTopFullWidth: S.prevBlockType != "full",
+                                }),
+                              },
+                              [
+                                c(
+                                  "div",
+                                  {
+                                    class: Z({
+                                      textWrapper: !0,
+                                      textIndication: S.textRight != "logo",
+                                      "textWrapper--smallPadding":
+                                        S.prevBlockType == "full",
+                                    }),
+                                  },
+                                  [
+                                    S.textRight != "logo"
+                                      ? (d(),
+                                        V(
+                                          re,
+                                          {
+                                            key: 0,
+                                            ref_for: !0,
+                                            ref_key: "text2",
+                                            ref: a,
+                                            text:
+                                              (L = S.textLeft) == null
+                                                ? void 0
+                                                : L[0],
+                                            class: "textIndication",
+                                            show: !o(y).underViewport.value,
+                                            anim: { type: "color" },
+                                            "is-large": !0,
+                                          },
+                                          null,
+                                          8,
+                                          ["text", "show"],
+                                        ))
+                                      : (d(!0),
+                                        _(
+                                          N,
+                                          { key: 1 },
+                                          K(
+                                            S.textLeft,
+                                            (Y, j) => (
+                                              d(),
+                                              V(
+                                                me,
+                                                {
+                                                  key: j,
+                                                  ref_for: !0,
+                                                  ref_key: "text5",
+                                                  ref: i,
+                                                  anim: {
+                                                    type: "color",
+                                                    delay: 0.2 * (j + 1),
+                                                  },
+                                                  text: Y,
+                                                  "is-fluid": !0,
+                                                  show: !o(M).underViewport
+                                                    .value,
+                                                },
+                                                null,
+                                                8,
+                                                ["anim", "text", "show"],
+                                              )
+                                            ),
+                                          ),
+                                          128,
+                                        )),
+                                  ],
+                                  2,
+                                ),
+                                c(
+                                  "div",
+                                  {
+                                    class: Z({
+                                      textWrapper: !0,
+                                      "textWrapper--smallPadding":
+                                        S.prevBlockType == "full",
+                                    }),
+                                  },
+                                  [
+                                    S.textRight == "logo"
+                                      ? (d(), V(We, { key: 0 }))
+                                      : (d(!0),
+                                        _(
+                                          N,
+                                          { key: 1 },
+                                          K(
+                                            S.textRight,
+                                            (Y, j) => (
+                                              d(),
+                                              V(
+                                                me,
+                                                {
+                                                  key: j,
+                                                  ref_for: !0,
+                                                  ref_key: "text3",
+                                                  ref: l,
+                                                  text: Y,
+                                                  "is-fluid": !0,
+                                                  show: !o(f).underViewport
+                                                    .value,
+                                                  anim: {
+                                                    type: "color",
+                                                    delay: 0.2,
+                                                  },
+                                                },
+                                                null,
+                                                8,
+                                                ["text", "show"],
+                                              )
+                                            ),
+                                          ),
+                                          128,
+                                        )),
+                                  ],
+                                  2,
+                                ),
+                              ],
+                              2,
+                            ))
+                          : P("", !0),
+                        S.type == "full"
+                          ? (d(),
+                            _("section", { key: C, class: "fullBlock" }, [
+                              c("div", Tt, [
+                                c("div", Ft, [
+                                  c(
+                                    "img",
+                                    {
+                                      style: ue({
+                                        visibility:
+                                          o(s).bg.isShowing || o(s).bg.isHiding
+                                            ? "visible"
+                                            : "hidden",
+                                      }),
+                                      src: ht,
+                                    },
+                                    null,
+                                    4,
+                                  ),
+                                  c(
+                                    "video",
+                                    {
+                                      ref_for: !0,
+                                      ref_key: "eggVideo",
+                                      ref: m,
+                                      style: ue({
+                                        visibility:
+                                          o(s).bg.isShowing || o(s).bg.isHiding
+                                            ? "hidden"
+                                            : "visible",
+                                      }),
+                                      src: gt,
+                                      muted: "",
+                                      playsinline: "",
+                                    },
+                                    null,
+                                    4,
+                                  ),
+                                ]),
+                                x(
+                                  ie,
+                                  {
+                                    ref_for: !0,
+                                    ref_key: "text4",
+                                    ref: r,
+                                    show: !o(w).underViewport.value,
+                                    tag: "p",
+                                    class: "text",
+                                    text: S.text,
+                                  },
+                                  null,
+                                  8,
+                                  ["show", "text"],
+                                ),
+                              ]),
+                            ]))
+                          : P("", !0),
+                      ],
+                      64,
+                    )
+                  );
+                }),
+                256,
+              )),
+            ],
+            8,
+            $t,
+          )
+        )
+      );
+    },
+  },
+  Et = W(Vt, [["__scopeId", "data-v-1e1ffe31"]]),
+  It = { class: "wrapper_mask" },
+  Ot = { class: "wrapper_content" },
+  At = ["src"],
+  Lt = { class: "wrapper" },
+  jt = { class: "role" },
+  Pt = { class: "medias" },
+  zt = { key: 0 },
+  Ht = { class: "wrapper_header" },
+  Yt = { class: "wrapper_mask" },
+  Dt = ["src"],
+  D = 0.35,
+  Wt = {
+    __name: "MemberListElt",
+    props: {
+      name: { type: String, default: null },
+      role: { type: String, default: null },
+      picture: { type: Object, default: null },
+      medias: { type: Array, default: null },
+      hideBorder: { type: Boolean, default: !1 },
+      index: { type: Number, default: null },
+      isMobileOpen: { type: Boolean, default: !1 },
+    },
+    emits: ["click"],
+    setup(e, { emit: t }) {
+      const s = oe(),
+        n = t,
+        a = e,
+        l = p(),
+        r = p(),
+        i = p(),
+        m = p(),
+        u = p(),
+        y = p(),
+        f = p(),
+        w = p(),
+        M = p(),
+        T = p(),
+        B = p(),
+        k = p(),
+        R = p(!1);
+      let O, S;
+      X(
+        () => a.isMobileOpen,
+        (g) => {
+          J(g);
+        },
+      );
+      const C = (g, h) => {
+          const v = g.getBoundingClientRect(),
+            F = v.top,
+            b = v.bottom,
+            $ = h.pageY,
+            E = Math.abs(F - $),
+            U = Math.abs(b - $);
+          switch (Math.min(E, U)) {
+            case E:
+              return "top";
+            case U:
+              return "bottom";
+          }
+        },
+        L = () => {
+          ((R.value = !0),
+            s.setIsHover(!0),
+            ae.isTouch || ne.play("HoverUI_In"));
+          const g = I.timeline();
+          (g.to(
+            i.value,
+            { transform: "translateY(0%)", duration: D, ease: "expo.out" },
+            0,
+          ),
+            g.to(
+              r.value,
+              { transform: "translateY(0%)", duration: D, ease: "expo.out" },
+              0.035,
+            ),
+            a.picture &&
+              (g.to(
+                y.value,
+                {
+                  transform: "translateY(0%) scale(1.1)",
+                  duration: D * 2,
+                  ease: "expo.out",
+                },
+                0,
+              ),
+              g.to(
+                w.value,
+                {
+                  transform: "translateY(0%) scale(0.9)",
+                  duration: D * 2,
+                  ease: "expo.out",
+                },
+                0,
+              ),
+              g.to(
+                f.value,
+                {
+                  transform: "translateY(0%) scale(0.9)",
+                  duration: D * 2,
+                  ease: "expo.out",
+                },
+                0.04,
+              )),
+            (O = g));
+        },
+        Y = (g) => {
+          ((R.value = !1), s.setIsHover(!1));
+          const h = C(l.value, g),
+            v = I.timeline();
+          (h === "top"
+            ? (v.to(
+                i.value,
+                {
+                  transform: "translateY(-102%)",
+                  duration: D,
+                  ease: "expo.out",
+                },
+                0,
+              ),
+              v.to(
+                r.value,
+                {
+                  transform: "translateY(-102%)",
+                  duration: D,
+                  ease: "expo.out",
+                },
+                0.035,
+              ),
+              a.picture &&
+                (v.to(
+                  y.value,
+                  {
+                    transform: "translateY(20%) scale(1)",
+                    duration: D * 2,
+                    ease: "expo.out",
+                  },
+                  0,
+                ),
+                v.to(
+                  w.value,
+                  {
+                    transform: "translateY(102%) scale(1)",
+                    duration: D * 2,
+                    ease: "expo.out",
+                  },
+                  0,
+                ),
+                v.to(
+                  f.value,
+                  {
+                    transform: "translateY(102%) scale(1)",
+                    duration: D * 2,
+                    ease: "expo.out",
+                  },
+                  0.035,
+                )))
+            : (v.to(
+                i.value,
+                {
+                  transform: "translateY(102%)",
+                  duration: D,
+                  ease: "expo.out",
+                },
+                0,
+              ),
+              v.to(
+                r.value,
+                {
+                  transform: "translateY(102%)",
+                  duration: D,
+                  ease: "expo.out",
+                },
+                0.035,
+              ),
+              a.picture &&
+                (v.to(
+                  y.value,
+                  {
+                    transform: "translateY(-20%) scale(1)",
+                    duration: D * 2,
+                    ease: "expo.out",
+                  },
+                  0,
+                ),
+                v.to(
+                  w.value,
+                  {
+                    transform: "translateY(-102%) scale(1)",
+                    duration: D * 2,
+                    ease: "expo.out",
+                  },
+                  0,
+                ),
+                v.to(
+                  f.value,
+                  {
+                    transform: "translateY(-102%) scale(1)",
+                    duration: D * 2,
+                    ease: "expo.out",
+                  },
+                  0.04,
+                ))),
+            v.call(() => {
+              ((i.value.style = ""),
+                (r.value.style = ""),
+                a.picture &&
+                  ((y.value.style = ""),
+                  (w.value.style = ""),
+                  (f.value.style = "")));
+            }),
+            (S = v));
+        },
+        j = () => {
+          (n("click", a.index), ne.play("ClickUI"));
+        },
+        J = (g = !1) => {
+          const h = I.timeline();
+          return (
+            g
+              ? (h.fromTo(
+                  M.value,
+                  { height: "0px", marginBottom: "0px" },
+                  {
+                    height: "278px",
+                    marginBottom: "20px",
+                    duration: 0.45,
+                    ease: "power4.out",
+                  },
+                  0,
+                ),
+                h.fromTo(
+                  m.value,
+                  { transform: "translateY(100%)" },
+                  {
+                    transform: "translateY(0%)",
+                    duration: 0.45,
+                    ease: "power4.out",
+                  },
+                  0,
+                ),
+                h.fromTo(
+                  u.value,
+                  { transform: "translateY(100%)" },
+                  {
+                    transform: "translateY(0%)",
+                    duration: 0.45,
+                    ease: "power4.out",
+                  },
+                  0.05,
+                ),
+                a.picture &&
+                  (h.to(
+                    T.value,
+                    {
+                      transform: "translateY(0%) scale(1.1)",
+                      duration: 0.45,
+                      ease: "power4.out",
+                    },
+                    0,
+                  ),
+                  h.to(
+                    B.value,
+                    {
+                      transform: "translateY(0%) scale(0.9)",
+                      duration: 0.45,
+                      ease: "power4.out",
+                    },
+                    0,
+                  ),
+                  h.to(
+                    k.value,
+                    {
+                      transform: "translateY(0%) scale(0.9)",
+                      duration: 0.45,
+                      ease: "power4.out",
+                    },
+                    0.05,
+                  )))
+              : (h.to(
+                  M.value,
+                  {
+                    height: "0px",
+                    marginBottom: "0px",
+                    duration: 0.45,
+                    ease: "power4.out",
+                  },
+                  0,
+                ),
+                h.to(
+                  m.value,
+                  {
+                    transform: "translateY(100%)",
+                    duration: 0.45,
+                    ease: "power4.out",
+                  },
+                  0.1,
+                ),
+                h.to(
+                  u.value,
+                  {
+                    transform: "translateY(100%)",
+                    duration: 0.45,
+                    ease: "power4.out",
+                  },
+                  0.05,
+                ),
+                a.picture &&
+                  (h.to(
+                    T.value,
+                    {
+                      transform: "translateY(-75%) scale(1)",
+                      duration: 0.45,
+                      ease: "power4.out",
+                    },
+                    0,
+                  ),
+                  h.to(
+                    B.value,
+                    {
+                      transform: "translateY(-100%) scale(1)",
+                      duration: 0.45,
+                      ease: "power4.out",
+                    },
+                    0,
+                  ),
+                  h.to(
+                    k.value,
+                    {
+                      transform: "translateY(-100%) scale(1)",
+                      duration: 0.45,
+                      ease: "power4.out",
+                    },
+                    0.05,
+                  ))),
+            h
+          );
+        };
+      return (
+        De(() => {
+          (O == null || O.kill(), S == null || S.kill());
+        }),
+        (g, h) => {
+          var v, F;
+          return (
+            d(),
+            _(
+              "div",
+              { class: Z(["member", { hideBorder: e.hideBorder }]) },
+              [
+                c(
+                  "div",
+                  {
+                    ref_key: "memberListRef",
+                    ref: l,
+                    class: "member_desktop",
+                    onMouseenter: L,
+                    onMouseleave: Y,
+                  },
+                  [
+                    c("div", It, [
+                      c(
+                        "div",
+                        {
+                          ref_key: "blackMaskRef",
+                          ref: r,
+                          class: "mask mask_black",
+                        },
+                        null,
+                        512,
+                      ),
+                      c(
+                        "div",
+                        {
+                          ref_key: "yellowMaskRef",
+                          ref: i,
+                          class: "mask mask_yellow",
+                        },
+                        null,
+                        512,
+                      ),
+                    ]),
+                    c("div", Ot, [
+                      x(
+                        re,
+                        {
+                          text: e.name,
+                          "is-white": o(R),
+                          "is-title": !0,
+                          class: "name",
+                        },
+                        null,
+                        8,
+                        ["text", "is-white"],
+                      ),
+                      e.picture
+                        ? (d(),
+                          _(
+                            "div",
+                            {
+                              key: 0,
+                              ref_key: "imageWrapperRef",
+                              ref: y,
+                              class: "image_wrapper",
+                            },
+                            [
+                              c(
+                                "div",
+                                {
+                                  ref_key: "imageMaskRef",
+                                  ref: w,
+                                  class: "image_mask",
+                                },
+                                null,
+                                512,
+                              ),
+                              c(
+                                "img",
+                                {
+                                  ref_key: "imageRef",
+                                  ref: f,
+                                  class: "image",
+                                  src: (v = e.picture) == null ? void 0 : v.url,
+                                  alt: "",
+                                },
+                                null,
+                                8,
+                                At,
+                              ),
+                            ],
+                            512,
+                          ))
+                        : P("", !0),
+                      c("div", Lt, [
+                        c("p", jt, H(e.role), 1),
+                        c("div", Pt, [
+                          (d(!0),
+                          _(
+                            N,
+                            null,
+                            K(
+                              e.medias,
+                              (b, $) => (
+                                d(),
+                                V(
+                                  de,
+                                  {
+                                    key: $,
+                                    name: b.icon,
+                                    url: b.url,
+                                    "is-white": o(R),
+                                    class: "button",
+                                  },
+                                  null,
+                                  8,
+                                  ["name", "url", "is-white"],
+                                )
+                              ),
+                            ),
+                            128,
+                          )),
+                          e.medias.length == 0
+                            ? (d(), _("div", zt))
+                            : P("", !0),
+                        ]),
+                      ]),
+                    ]),
+                  ],
+                  544,
+                ),
+                c("div", { class: "member_mobile", onClick: j }, [
+                  c("div", Ht, [
+                    x(
+                      re,
+                      {
+                        text: e.name,
+                        "is-white": e.isMobileOpen,
+                        "is-title": !0,
+                        class: Z(["name", { isMobileOpen: e.isMobileOpen }]),
+                      },
+                      null,
+                      8,
+                      ["text", "is-white", "class"],
+                    ),
+                    c(
+                      "p",
+                      { class: Z(["role", { isMobileOpen: e.isMobileOpen }]) },
+                      H(e.role),
+                      3,
+                    ),
+                  ]),
+                  c("div", Yt, [
+                    c(
+                      "div",
+                      {
+                        ref_key: "blackMaskMobileRef",
+                        ref: u,
+                        class: "mask mask_black",
+                      },
+                      null,
+                      512,
+                    ),
+                    c(
+                      "div",
+                      {
+                        ref_key: "yellowMaskMobileRef",
+                        ref: m,
+                        class: "mask mask_yellow",
+                      },
+                      null,
+                      512,
+                    ),
+                  ]),
+                  c(
+                    "div",
+                    {
+                      ref_key: "wrapperMobileRef",
+                      ref: M,
+                      class: "wrapper_content",
+                    },
+                    [
+                      e.picture
+                        ? (d(),
+                          _(
+                            "div",
+                            {
+                              key: 0,
+                              ref_key: "imageWrapperMobileRef",
+                              ref: T,
+                              class: "image_wrapper",
+                            },
+                            [
+                              c(
+                                "div",
+                                {
+                                  ref_key: "imageMaskMobileRef",
+                                  ref: B,
+                                  class: "image_mask",
+                                },
+                                null,
+                                512,
+                              ),
+                              c(
+                                "img",
+                                {
+                                  ref_key: "imageMobileRef",
+                                  ref: k,
+                                  class: "image",
+                                  src: (F = e.picture) == null ? void 0 : F.url,
+                                  alt: "",
+                                },
+                                null,
+                                8,
+                                Dt,
+                              ),
+                            ],
+                            512,
+                          ))
+                        : P("", !0),
+                      c(
+                        "div",
+                        {
+                          class: Z([
+                            "medias",
+                            { isMobileOpen: e.isMobileOpen },
+                          ]),
+                        },
+                        [
+                          (d(!0),
+                          _(
+                            N,
+                            null,
+                            K(
+                              e.medias,
+                              (b, $) => (
+                                d(),
+                                V(
+                                  de,
+                                  {
+                                    key: $,
+                                    name: b.icon,
+                                    url: b.url,
+                                    class: "button",
+                                  },
+                                  null,
+                                  8,
+                                  ["name", "url"],
+                                )
+                              ),
+                            ),
+                            128,
+                          )),
+                        ],
+                        2,
+                      ),
+                    ],
+                    512,
+                  ),
+                ]),
+              ],
+              2,
+            )
+          );
+        }
+      );
+    },
+  },
+  Ut = W(Wt, [["__scopeId", "data-v-f152e089"]]),
+  qt = ["id"],
+  Nt = { class: "heroBlock" },
+  Zt = { class: "title" },
+  Kt = { class: "membersBlock" },
+  Gt = { class: "title" },
+  Jt = { class: "frame" },
+  Xt = tt(
+    '<svg class="frame_border" width="116" height="115" viewBox="0 0 116 115" fill="none" xmlns="http://www.w3.org/2000/svg" data-v-2fec9e30><rect x="0.500838" y="0.262557" width="114.475" height="114.475" stroke="black" stroke-opacity="0.3" stroke-width="0.525114" data-v-2fec9e30></rect><path d="M15.466 9.07886H9.31641V15.2284" stroke="black" stroke-width="0.525114" data-v-2fec9e30></path><path d="M9.31737 11.7703H12.0078V9.07982" stroke="black" stroke-width="0.525114" data-v-2fec9e30></path><path d="M100.01 105.763H106.002V99.7708" stroke="black" stroke-width="0.525114" data-v-2fec9e30></path><path d="M106.003 103.141H103.381V105.763" stroke="black" stroke-width="0.525114" data-v-2fec9e30></path></svg>',
+    1,
+  ),
+  Qt = { class: "title" },
+  es = 8,
+  ts = {
+    __name: "TeamBlock",
+    props: {
+      title: { type: String, default: null },
+      subtitle: { type: String, default: null },
+      anchor: { type: String, default: "" },
+      members: { type: Object, default: null },
+      moreCta: { type: String, default: "" },
+    },
+    emits: ["expanded"],
+    setup(e, { emit: t }) {
+      const s = oe(),
+        n = t,
+        a = e,
+        l = p(),
+        r = p(),
+        i = p(),
+        m = p(),
+        u = p(),
+        y = p(null),
+        f = z(l),
+        w = p(!1),
+        M = A(() => (w.value ? a.members : a.members.slice(0, es))),
+        T = A(() => a.moreCta.split(" ").slice(0, 2));
+      function B() {
+        ne.play("DecodingUI");
+        const C = I.timeline();
+        (C.to(m.value, { opacity: 0, duration: 0.35, ease: "expo.inOut" }, 0),
+          C.to(
+            m.value,
+            { height: "100vh", duration: 0.35, ease: "power1.inOut" },
+            0,
+          ),
+          C.to(u.value, { display: "none" }, 0),
+          C.call(
+            () => {
+              ((w.value = !0), n("expanded"));
+            },
+            null,
+            0.25,
+          ));
+      }
+      function k(C, L) {
+        const Y = I.timeline();
+        (Y.fromTo(
+          C,
+          { opacity: 0, transform: "translateY(100%)" },
+          {
+            opacity: 1,
+            transform: "translateY(0%)",
+            duration: 1,
+            ease: "expo.out",
+            delay: C.dataset.index * 0.1,
+          },
+          -0.5,
+        ),
+          Y.call(() => L(), null));
+      }
+      const R = () => {
+          var C, L;
+          (s.setIsHover(!0),
+            (C = i.value) == null || C.setSpeed(1),
+            (L = i.value) == null || L.playSegments([0, 31], !0),
+            ae.isTouch || ne.play("HoverUI_In"));
+        },
+        O = () => {
+          var C, L;
+          (s.setIsHover(!1),
+            (C = i.value) == null || C.setSpeed(1),
+            (L = i.value) == null || L.playSegments([16, 0], !0));
+        },
+        S = (C) => {
+          y.value = y.value === C ? null : C;
+        };
+      return (C, L) => {
+        const Y = st;
+        return (
+          d(),
+          _(
+            "div",
+            { id: a.anchor, class: "teamBlock" },
+            [
+              c("section", Nt, [
+                c("h3", Zt, H(e.title), 1),
+                x(
+                  me,
+                  {
+                    ref_key: "text1",
+                    ref: l,
+                    class: "description",
+                    text: e.subtitle,
+                    "is-small": !0,
+                    anim: { type: "color" },
+                    show: !o(f).underViewport.value,
+                  },
+                  null,
+                  8,
+                  ["text", "show"],
+                ),
+              ]),
+              c("section", Kt, [
+                x(
+                  Qe,
+                  { onEnter: k },
+                  {
+                    default: Q(() => [
+                      (d(!0),
+                      _(
+                        N,
+                        null,
+                        K(
+                          o(M),
+                          (j, J) => (
+                            d(),
+                            V(
+                              Ut,
+                              q(
+                                {
+                                  ref_for: !0,
+                                  ref_key: "memberListRef",
+                                  ref: r,
+                                  key: J,
+                                  "hide-border": o(w),
+                                },
+                                j,
+                                {
+                                  index: J,
+                                  "data-index": J,
+                                  "is-mobile-open": o(y) === J,
+                                  class: "member_item",
+                                  onClick: S,
+                                },
+                              ),
+                              null,
+                              16,
+                              [
+                                "hide-border",
+                                "index",
+                                "data-index",
+                                "is-mobile-open",
+                              ],
+                            )
+                          ),
+                        ),
+                        128,
+                      )),
+                    ]),
+                    _: 1,
+                  },
+                ),
+              ]),
+              c(
+                "div",
+                {
+                  ref_key: "onMoreButtonWrapperRef",
+                  ref: u,
+                  class: "moreCtaWrapper",
+                },
+                [
+                  c(
+                    "h3",
+                    {
+                      ref_key: "onMoreButtonRef",
+                      ref: m,
+                      class: "moreCta",
+                      onClick: B,
+                      onMouseenter: R,
+                      onMouseleave: O,
+                    },
+                    [
+                      c("div", Gt, H(o(T)[0]), 1),
+                      c("div", Jt, [
+                        Xt,
+                        x(Y, null, {
+                          default: Q(() => [
+                            x(
+                              o(et),
+                              {
+                                ref_key: "lottieRef",
+                                ref: i,
+                                class: "frame_center",
+                                "animation-link": "/lottie/moreTeamHover.json",
+                                "auto-play": !1,
+                                loop: !1,
+                                width: "100%",
+                                height: "100%",
+                              },
+                              null,
+                              512,
+                            ),
+                          ]),
+                          _: 1,
+                        }),
+                      ]),
+                      c("div", Qt, H(o(T)[1]), 1),
+                    ],
+                    544,
+                  ),
+                ],
+                512,
+              ),
+            ],
+            8,
+            qt,
+          )
+        );
+      };
+    },
+  },
+  ss = W(ts, [["__scopeId", "data-v-2fec9e30"]]),
+  os = { class: "partner" },
+  as = ["src"],
+  ns = {
+    __name: "PartnerFrameElt",
+    props: {
+      name: { type: String, default: null },
+      logo: { type: Object, default: null },
+    },
+    setup(e) {
+      return (t, s) => {
+        var n;
+        return (
+          d(),
+          _("div", os, [
+            c(
+              "img",
+              {
+                class: "logo",
+                src: (n = e.logo) == null ? void 0 : n.url,
+                alt: "",
+              },
+              null,
+              8,
+              as,
+            ),
+            x(o(Ae), { class: "arrowLeft" }),
+            x(o(Ae), { class: "arrowRight" }),
+          ])
+        );
+      };
+    },
+  },
+  ls = W(ns, [["__scopeId", "data-v-29d31b84"]]),
+  rs = ["id"],
+  is = { class: "textBlock" },
+  cs = { class: "membersBlock" },
+  us = {
+    __name: "PartnersBlock",
+    props: {
+      title: { type: String, default: null },
+      anchor: { type: String, default: "" },
+      subtitle: { type: String, default: null },
+      partners: { type: Array, default: () => [] },
+    },
+    setup(e) {
+      const t = e,
+        s = p(),
+        n = p(),
+        a = z(s),
+        l = z(n);
+      return (r, i) => (
+        d(),
+        _(
+          "div",
+          { id: t.anchor, class: "teamBlock" },
+          [
+            c("section", is, [
+              x(
+                ie,
+                {
+                  ref_key: "text1",
+                  ref: s,
+                  class: "subtitle",
+                  tag: "h3",
+                  text: e.title,
+                  show: !o(a).underViewport.value,
+                },
+                null,
+                8,
+                ["text", "show"],
+              ),
+              x(
+                me,
+                {
+                  ref_key: "text2",
+                  ref: n,
+                  class: "indication",
+                  text: e.subtitle,
+                  anim: { type: "color" },
+                  show: !o(l).underViewport.value,
+                },
+                null,
+                8,
+                ["text", "show"],
+              ),
+            ]),
+            c("section", cs, [
+              (d(!0),
+              _(
+                N,
+                null,
+                K(
+                  e.partners,
+                  (m, u) => (
+                    d(),
+                    V(ls, q({ key: u }, m, { class: "member" }), null, 16)
+                  ),
+                ),
+                128,
+              )),
+            ]),
+          ],
+          8,
+          rs,
+        )
+      );
+    },
+  },
+  ds = W(us, [["__scopeId", "data-v-1deedf24"]]),
+  ms = { class: "footerBlock" },
+  fs = { class: "textBlock" },
+  ps = { class: "wrapperLeft" },
+  hs = { class: "wrapperRight" },
+  gs = { class: "ctaBlock--desktop" },
+  vs = { class: "medias" },
+  bs = { class: "wrapper" },
+  ys = { class: "copyright" },
+  ks = { class: "langContainer" },
+  _s = { class: "ctaBlock--mobile" },
+  xs = { class: "medias" },
+  ws = { class: "wrapper__1" },
+  Bs = { class: "wrapper" },
+  $s = { class: "copyright" },
+  Ss = { class: "wrapper__2" },
+  Ms = { class: "langContainer" },
+  Rs = {
+    __name: "FooterBlock",
+    setup(e) {
+      const t = oe(),
+        s = Ye(),
+        n = A(() => s.menu),
+        a = A(() => s.footer);
+      A(() => s.valuePopup);
+      const l = A(() => s.getPageByType("terms")),
+        r = p(),
+        i = p(),
+        m = z(r),
+        u = z(i),
+        y = () => {
+          (t.setIsHover(!0), ae.isTouch || ne.play("HoverUI_In"));
+        },
+        f = () => {
+          t.setIsHover(!1);
+        };
+      return (w, M) => {
+        var T;
+        return (
+          d(),
+          _("section", ms, [
+            c("div", fs, [
+              c("div", ps, [
+                x(
+                  ie,
+                  {
+                    ref_key: "text1",
+                    ref: r,
+                    class: "title",
+                    text: o(a).title,
+                    tag: "h3",
+                    show: !o(m).underViewport.value,
+                  },
+                  null,
+                  8,
+                  ["text", "show"],
+                ),
+                o(a).mediaKitLink
+                  ? (d(),
+                    V(
+                      be,
+                      {
+                        key: 0,
+                        text:
+                          (T = o(a).mediaKitLink) == null ? void 0 : T.label,
+                        url: "https://www.figma.com/design/11goK3TluUE47JX5TpvjPt/Hatom-Brand-Assets?node-id=0-1&t=JoqHKDxOcJkg6ugX-1",
+                        "has-bottom-arrow": !0,
+                        show: !o(m).underViewport.value,
+                      },
+                      null,
+                      8,
+                      ["text", "show"],
+                    ))
+                  : P("", !0),
+              ]),
+              c("div", hs, [
+                x(
+                  re,
+                  {
+                    ref_key: "text2",
+                    ref: i,
+                    anim: { type: "color", delay: 0.2 },
+                    text: o(a).baselineTop,
+                    "has-arrow": !1,
+                    "is-medium": !0,
+                    "is-large": !1,
+                    class: "text",
+                    show: !o(u).underViewport.value,
+                  },
+                  null,
+                  8,
+                  ["text", "show"],
+                ),
+                x(ot, { "is-about": !0 }),
+              ]),
+            ]),
+            x(
+              pt,
+              {
+                class: "menuContentBlock",
+                "has-big-space": !0,
+                baseline: o(n).baselineBottom,
+              },
+              null,
+              8,
+              ["baseline"],
+            ),
+            c("div", gs, [
+              c("div", vs, [
+                (d(!0),
+                _(
+                  N,
+                  null,
+                  K(
+                    o(n).medias,
+                    (B, k) => (
+                      d(),
+                      V(
+                        de,
+                        { key: k, name: B.icon, url: B.url, class: "icon" },
+                        null,
+                        8,
+                        ["name", "url"],
+                      )
+                    ),
+                  ),
+                  128,
+                )),
+              ]),
+              c("div", bs, [
+                c("p", ys, H(o(a).copyright), 1),
+                o(l)
+                  ? (d(),
+                    V(
+                      Ie,
+                      {
+                        key: 0,
+                        class: "privacy",
+                        url: o(l).url,
+                        onMouseenter: y,
+                        onMouseleave: f,
+                      },
+                      {
+                        default: Q(() => [
+                          x(
+                            at,
+                            { class: "privacy-text", text: o(l).label },
+                            null,
+                            8,
+                            ["text"],
+                          ),
+                        ]),
+                        _: 1,
+                      },
+                      8,
+                      ["url"],
+                    ))
+                  : P("", !0),
+              ]),
+              c("div", ks, [
+                x(Oe, { class: "langContainer-btn", "is-drop-top": !0 }),
+              ]),
+            ]),
+            c("div", _s, [
+              c("div", xs, [
+                (d(!0),
+                _(
+                  N,
+                  null,
+                  K(
+                    o(n).medias,
+                    (B, k) => (
+                      d(),
+                      V(
+                        de,
+                        { key: k, name: B.icon, url: B.url, class: "icon" },
+                        null,
+                        8,
+                        ["name", "url"],
+                      )
+                    ),
+                  ),
+                  128,
+                )),
+              ]),
+              c("div", ws, [
+                c("div", Bs, [
+                  c("p", $s, H(o(a).copyright), 1),
+                  o(l)
+                    ? (d(),
+                      V(
+                        Ie,
+                        { key: 0, class: "privacy", url: o(l).url },
+                        { default: Q(() => [nt(H(o(l).label), 1)]), _: 1 },
+                        8,
+                        ["url"],
+                      ))
+                    : P("", !0),
+                ]),
+              ]),
+              c("div", Ss, [
+                c("div", Ms, [
+                  x(Oe, { class: "langContainer-btn", "is-drop-top": !0 }),
+                ]),
+              ]),
+            ]),
+          ])
+        );
+      };
+    },
+  },
+  Ce = W(Rs, [["__scopeId", "data-v-b272a538"]]),
+  Cs = ["onMouseenter", "onMouseleave", "onClick"],
+  Ts = { class: "edgesWrapper" },
+  Fs = 0.35,
+  Vs = {
+    __name: "AboutPage",
+    props: { page: { type: Object, default: null } },
+    setup(e) {
+      let t = console.log.bind(
+        console,
+        "%c - AboutPage.%s() - ",
+        "background-color: lightcoral; color: black",
+      );
+      Se.isProduction && (t = () => {});
+      const s = e,
+        n = ["story", "team", "partners"],
+        a = ye(),
+        l = oe(),
+        r = ke(),
+        { $webglApp: i } = Me(),
+        [m, u] = _e(null),
+        y = A(() => s.page.url),
+        f = p(!1),
+        w = A(() => {
+          var b, $, E;
+          return [
+            { title: ((b = s.page.story) == null ? void 0 : b.navTitle) || "" },
+            { title: (($ = s.page.team) == null ? void 0 : $.navTitle) || "" },
+            {
+              title:
+                ((E = s.page.partners) == null ? void 0 : E.navTitle) || "",
+            },
+          ];
+        });
+      let M;
+      const T = p(),
+        B = p(),
+        k = p(),
+        R = p(0),
+        O = z(B),
+        S = (b) => {
+          l.setIsHover(!0);
+          const $ = T.value[b].children[0],
+            E = I.timeline();
+          (E.to($, { color: "#C1FF12", duration: 0.5 }, 0),
+            E.fromTo(
+              $,
+              { opacity: 0 },
+              { opacity: 1, stagger: 0, duration: 0.6 },
+              0,
+            ),
+            E.fromTo(
+              $,
+              { x: 0, y: -20 },
+              { x: 0, y: 0, stagger: 0.02, duration: 0.8, ease: "power2.out" },
+              0,
+            ),
+            ae.isTouch || ne.play("HoverUI_In"));
+        },
+        C = (b) => {
+          (l.setIsHover(!1),
+            I.killTweensOf(T.value[b].children[0], "color"),
+            I.to(
+              T.value[b].children[0],
+              { color: null, duration: Fs, ease: "power1.inOut" },
+              0,
+            ));
+        },
+        L = (b) => {
+          (te.lenisInstance.scrollTo("#" + b, { force: !0 }),
+            ne.play("ClickUI"),
+            S(b));
+        };
+      (X(() => a.ready, Y),
+        X(O.isInViewport, (b) => {
+          b && j();
+        }),
+        xe(() => {
+          a.ready && Y();
+        }),
+        se(() => {
+          (we.addViewAssetsToPreload("home"),
+            l.updateMainLoader({ hideOnComplete: !1 }),
+            f.value && h());
+        }));
+      function Y() {
+        var b;
+        ((M =
+          (b = i == null ? void 0 : i.viewManager.get("home")) == null
+            ? void 0
+            : b.instance),
+          (M.viewPath = y.value),
+          f.value && h());
+      }
+      const j = () => {
+          const b = J(B.value.$el);
+          R.value = b.bottom - fe.innerHeight;
+        },
+        J = (b) => {
+          var G;
+          const $ = b.getBoundingClientRect(),
+            E = (G = te.lenisInstance) == null ? void 0 : G.animatedScroll;
+          return new DOMRect($.x, $.y + E, $.width, $.height);
+        },
+        g = () => {
+          ae.isTouch || j();
+        };
+      function h() {
+        if (!m.value || !M)
+          return (
+            (f.value = !0),
+            t("showFailed", "pageElt", !!m.value, "homeView", !!M),
+            I.timeline()
+          );
+        ((f.value = !1),
+          t("show"),
+          te.setDomTarget(m.value.$el, y.value),
+          ae.isTouch ||
+            (fe.addEventListener("resize", j),
+            j(),
+            te.lenisInstance.on("scroll", ($) => {
+              const E = $.animatedScroll - R.value,
+                U = Math.max(E, 0);
+              k.value.style.transform = `translateY(${-U}px) rotate(180deg)`;
+            })));
+        const b = I.timeline();
+        return (
+          b.fromTo(
+            m.value.$el,
+            { autoAlpha: 0 },
+            { autoAlpha: 1, duration: 0.7, ease: "sine.inOut" },
+            0,
+          ),
+          b
+        );
+      }
+      function v() {
+        (t("hide"), ae.isTouch || fe.removeEventListener("resize", j));
+        const b = I.timeline();
+        return (
+          b.to(
+            m.value.$el,
+            { autoAlpha: 0, duration: 0.3, ease: "sine.inOut" },
+            0,
+          ),
+          b.call(F),
+          b
+        );
+      }
+      function F() {
+        (t("onHideComplete"), u());
+      }
+      return (
+        Be({
+          enter: h,
+          leave: v,
+          mode: "out-in",
+          name: r == null ? void 0 : r.path,
+          type: "page",
+        }),
+        (b, $) => (
+          d(),
+          V(
+            $e,
+            {
+              ref_key: "pageElt",
+              ref: m,
+              class: Z({
+                aboutPage: !0,
+                hidden:
+                  o(l).menu.isOpen ||
+                  o(l).menu.isOpenDelayed ||
+                  o(l).mainLoader.visible,
+              }),
+              page: e.page,
+            },
+            {
+              default: Q(() => [
+                c(
+                  "nav",
+                  { ref_key: "navContainerRef", ref: k, class: "navBlock" },
+                  [
+                    (d(!0),
+                    _(
+                      N,
+                      null,
+                      K(
+                        w.value,
+                        (E, U) => (
+                          d(),
+                          _(
+                            "button",
+                            {
+                              ref_for: !0,
+                              ref_key: "linkRef",
+                              ref: T,
+                              key: U,
+                              class: "link",
+                              onMouseenter: (G) => S(U),
+                              onMouseleave: (G) => C(U),
+                              onClick: (G) => L(n[U]),
+                            },
+                            [c("span", null, H(E.title), 1)],
+                            40,
+                            Cs,
+                          )
+                        ),
+                      ),
+                      128,
+                    )),
+                  ],
+                  512,
+                ),
+                c("div", Ts, [
+                  x(
+                    Et,
+                    q({ anchor: n[0] }, e.page.story, {
+                      blocks: e.page.storyBlocks,
+                      show: !(
+                        o(l).menu.isOpen ||
+                        o(l).menu.isOpenDelayed ||
+                        o(l).mainLoader.visible
+                      ),
+                    }),
+                    null,
+                    16,
+                    ["anchor", "blocks", "show"],
+                  ),
+                  x(
+                    ss,
+                    q({ anchor: n[1] }, e.page.team, {
+                      members: e.page.members,
+                      onExpanded: g,
+                    }),
+                    null,
+                    16,
+                    ["anchor", "members"],
+                  ),
+                  x(
+                    ds,
+                    q(
+                      { ref_key: "partnersContainerRef", ref: B, anchor: n[2] },
+                      e.page.partners,
+                      { partners: e.page.partnersList, class: "partners" },
+                    ),
+                    null,
+                    16,
+                    ["anchor", "partners"],
+                  ),
+                ]),
+                x(Ce),
+              ]),
+              _: 1,
+            },
+            8,
+            ["class", "page"],
+          )
+        )
+      );
+    },
+  },
+  Co = W(Vs, [["__scopeId", "data-v-f3d72cde"]]),
+  Es = { class: "topContactBlock" },
+  Is = { class: "heroBlock" },
+  Os = { class: "contentBlock" },
+  As = { class: "leftBlock" },
+  Ls = { class: "rightBlock" },
+  js = { class: "rightBlock_medias" },
+  Ps = { key: 0 },
+  zs = {
+    __name: "TopContactBlock",
+    props: {
+      title: { type: String, default: null },
+      text: { type: String, default: null },
+      cta: { type: String, default: null },
+      mediasCta: { type: String, default: null },
+      medias: { type: Array, default: null },
+      show: { type: Boolean, default: !1 },
+    },
+    setup(e) {
+      const t = e,
+        s = p(),
+        n = p(),
+        a = p(),
+        l = z(s),
+        r = z(n),
+        i = z(a),
+        m = A(() => t.medias);
+      return (u, y) => (
+        d(),
+        _("div", Es, [
+          c("section", Is, [
+            x(Re, { class: "title", content: e.title, show: t.show }, null, 8, [
+              "content",
+              "show",
+            ]),
+          ]),
+          c("section", Os, [
+            c("div", As, [
+              x(
+                me,
+                {
+                  ref_key: "text1",
+                  ref: s,
+                  class: "leftBlock_text",
+                  anim: { type: "color" },
+                  text: e.text,
+                  show: !o(l).underViewport.value,
+                },
+                null,
+                8,
+                ["text", "show"],
+              ),
+            ]),
+            c("div", Ls, [
+              x(
+                ie,
+                {
+                  ref_key: "text2",
+                  ref: n,
+                  class: "rightBlock_cta",
+                  show: !o(r).underViewport.value,
+                  tag: "h2",
+                  text: e.cta,
+                  params: { delay: 1 },
+                },
+                null,
+                8,
+                ["show", "text"],
+              ),
+              x(
+                re,
+                {
+                  ref_key: "text3",
+                  ref: a,
+                  class: "rightBlock_mediasCta",
+                  text: e.mediasCta,
+                  "has-arrow": !1,
+                  "is-large": !0,
+                  show: !o(i).underViewport.value,
+                  anim: { type: "color", delay: 0.5 },
+                },
+                null,
+                8,
+                ["text", "show"],
+              ),
+              c("div", js, [
+                (d(!0),
+                _(
+                  N,
+                  null,
+                  K(
+                    o(m),
+                    (f, w) => (
+                      d(),
+                      V(
+                        de,
+                        {
+                          key: w,
+                          name: f.icon,
+                          url:
+                            f.icon === "Discord"
+                              ? "https://discord.gg/g9xf4axRPD"
+                              : f.url,
+                          class: "icon",
+                        },
+                        null,
+                        8,
+                        ["name", "url"],
+                      )
+                    ),
+                  ),
+                  128,
+                )),
+                o(m).length == 0 ? (d(), _("div", Ps)) : P("", !0),
+              ]),
+            ]),
+          ]),
+        ])
+      );
+    },
+  },
+  Hs = W(zs, [["__scopeId", "data-v-b622234b"]]),
+  le = {
+    hexa: /^[a-zA-Z0-9'‘áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ_\s -]+$/i,
+    hexa_extend:
+      /^[a-zA-Z0-9'‘áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ_\s \/-?\.,;:$!&\(\)]+$/i,
+    zipcode: /^(F-)?((2[A|B])|[0-9]{2})[0-9]{3}$/,
+    number: /^[0-9]*$/,
+    email: /[a-zA-Z0-9_\.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-\.]+/,
+    tel: /^\+?[0-9]{6,25}$/,
+    tel_fr: /^0?[1-9][0-9]{8}$/,
+    tel_int: /^\+[0-9]{8,25}$/,
+    date: /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/,
+    url: /^(((http|ftp|https):\/{2})+(([0-9a-z_-]+\.)+(aero|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cu|cv|cx|cy|cz|cz|de|dj|dk|dm|do|dz|ec|ee|eg|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mk|ml|mn|mn|mo|mp|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|nom|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ra|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|sj|sk|sl|sm|sn|so|sr|st|su|sv|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw|arpa)(:[0-9]+)?((\/([~0-9a-zA-Z\+@\.\/_-]+))?(\?[0-9a-zA-Z\+@\/&\[\];=_-]+)?)?))\b/imu,
+    url_light:
+      /^(((http|ftp|https):\/{2})?(([0-9a-z_-]+\.)+(aero|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cu|cv|cx|cy|cz|cz|de|dj|dk|dm|do|dz|ec|ee|eg|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mk|ml|mn|mn|mo|mp|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|nom|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ra|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|sj|sk|sl|sm|sn|so|sr|st|su|sv|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw|arpa)(:[0-9]+)?((\/([~0-9a-zA-Z\+@\.\/_-]+))?(\?[0-9a-zA-Z\+@\/&\[\];=_-]+)?)?))\b/imu,
+  },
+  Le = "required",
+  Ys = "length",
+  Ds = "format";
+function je(e, t = null, s = null, n = null) {
+  (t || (t = [Object.keys(e)]), s || (s = {}));
+  const a = {};
+  Object.keys(e).forEach((i) => {
+    const m = Ws(i, e[i]);
+    ((a[i] = m), m.error != null);
+  });
+  const l = qe(t, s, n).map(() => 0),
+    r = [];
+  return (
+    Object.keys(a).forEach((i) => {
+      const m = a[i],
+        u = qs(i, t, s);
+      !Us(i, t, s, n) ||
+        m.skip ||
+        (m.error && l[u]++, r[u] == null && (r[u] = {}), (r[u][i] = m.error));
+    }),
+    { fields: r, errors: l }
+  );
+}
+function Ws(e, t = {}) {
+  (t.type == null && (t.type = "text"),
+    t.required == null && (t.required = !0),
+    t.minlength == null && (t.minlength = 0),
+    t.format == null && (t.format = null),
+    t.disabled == null && (t.disabled = !1));
+  const { type: s, required: n, minlength: a, format: l } = t;
+  let { value: r } = t,
+    i = null,
+    m,
+    u = null,
+    y = !0,
+    f;
+  if (t.disabled === !0) return { value: null, error: null, required: !1 };
+  switch (s) {
+    case "checkbox":
+    case "radio":
+      ((m = r === !0 && r !== ""), !m && n && ((i = Le), (r = null)));
+      break;
+    case "submit":
+      r = null;
+      break;
+    default:
+      ((l != null && typeof l == "object" && l.constructor === RegExp) ||
+      (l != null && typeof l == "function")
+        ? (u = l)
+        : l != null && le[l] != null
+          ? (u = le[l])
+          : le[e] != null
+            ? (u = le[e])
+            : le[s] != null && (u = le[s]),
+        r == null && (r = ""),
+        (r = "" + r),
+        s === "tel" &&
+          ((r = r.replace(/ /gi, "")),
+          l === "tel" && (r = r.replace(/\(\+[0-9]{2,5}\)/gi, ""))),
+        u != null &&
+          (u.constructor === RegExp
+            ? (y = r.match(u) != null)
+            : u.constructor === Function && (y = !!u(r))),
+        (f = r.replace(/ /gi, "") === ""),
+        n && f
+          ? ((i = Le), (r = null))
+          : r.length < a && n
+            ? ((i = Ys), (r = null))
+            : !y && (n || !f) && ((i = Ds), (r = null)));
+  }
+  return { value: r, error: i, required: n };
+}
+function qe(e, t, s = null) {
+  return e.map((n) => {
+    const a = [];
+    return (
+      n.forEach((l) => {
+        const r = t[l] || {};
+        (!s || !r.condition || r.condition === s) && a.push(l);
+      }),
+      a
+    );
+  });
+}
+function Us(e, t, s, n) {
+  let a;
+  return (
+    t.forEach((l) => {
+      const r = l.find((i) => {
+        const m = s[i] || {};
+        return !n || !m.condition || m.condition === n ? i === e : !1;
+      });
+      r && (a = r);
+    }),
+    a
+  );
+}
+function qs(e, t, s) {
+  let n = -1;
+  return (
+    qe(t, s).forEach((l, r) => {
+      l.includes(e) && (n = r);
+    }),
+    n
+  );
+}
+function Pe(e) {
+  const t = {};
+  for (const s in e) t[s] = { error: e[s] };
+  return t;
+}
+function Ns(e) {
+  let t = e;
+  typeof e == "object" &&
+    e.constructor === Array &&
+    ((t = {}),
+    e.forEach((s, n) => {
+      const a = s.name ? s.name : n;
+      t[a] = s;
+    }));
+  for (const s in t) {
+    const n = t[s];
+    (n.value === void 0 && (n.value = null),
+      n.error === void 0 && (n.error = null),
+      n.required === void 0 && (n.required = !0),
+      n.defaultValue !== void 0 && (n.value = n.defaultValue),
+      (n.hidden = n.hidden === !0));
+  }
+  return t;
+}
+function Zs() {
+  return { processing: !1, error: !1, response: null };
+}
+const Ks = ["for"],
+  Gs = ["id", "name"],
+  Js = { type: "text", value: "", disabled: "", selected: "" },
+  Xs = ["value", "disabled"],
+  Qs = [
+    "id",
+    "type",
+    "name",
+    "placeholder",
+    "disabled",
+    "maxlength",
+    "autocomplete",
+    "data-lpignore",
+  ],
+  eo = [
+    "id",
+    "name",
+    "rows",
+    "placeholder",
+    "disabled",
+    "maxlength",
+    "autocomplete",
+    "data-lpignore",
+  ],
+  to = { key: 0, class: "errorText" },
+  so = ["select", "text", "textarea", "email", "password"],
+  oo = {
+    __name: "FormField",
+    props: lt(
+      {
+        type: {
+          type: String,
+          default: "text",
+          validator: (e) => so.includes(e),
+        },
+        text: { type: String, default: "" },
+        name: { type: String, default: "" },
+        placeholder: { type: String, default: "" },
+        error: { type: [String, Boolean], default: !1 },
+        errors: { type: Object, default: null },
+        rows: { type: Number, default: 4 },
+        maxlength: { type: Number, default: null },
+        disabled: { type: Boolean, default: !1 },
+        autocomplete: { type: String, default: null },
+        options: { type: Array, default: () => [] },
+      },
+      { modelValue: { type: String }, modelModifiers: {} },
+    ),
+    emits: ["update:modelValue"],
+    setup(e) {
+      const t = rt(e, "modelValue"),
+        s = e,
+        n = A(() => s.type === "select"),
+        a = p(!0),
+        l = A(() => {
+          const { maxlength: i, type: m } = s;
+          return i ?? (m === "textarea" ? 600 : 50);
+        });
+      function r(i) {
+        n.value && (a.value = !1);
+      }
+      return (i, m) => (
+        d(),
+        _(
+          "div",
+          {
+            class: Z({
+              formField: !0,
+              "formField--select": o(n),
+              isError: !!e.error,
+            }),
+          },
+          [
+            c("label", { for: e.name }, H(e.text), 9, Ks),
+            e.type === "select"
+              ? he(
+                  (d(),
+                  _(
+                    "select",
+                    {
+                      key: 0,
+                      id: e.name,
+                      "onUpdate:modelValue":
+                        m[0] || (m[0] = (u) => (t.value = u)),
+                      name: e.name,
+                      class: Z({ empty: o(a) }),
+                      onChange: r,
+                    },
+                    [
+                      c("option", Js, H(e.placeholder), 1),
+                      (d(!0),
+                      _(
+                        N,
+                        null,
+                        K(
+                          e.options,
+                          (u, y) => (
+                            d(),
+                            _(
+                              "option",
+                              { key: y, value: u, disabled: e.disabled },
+                              H(u),
+                              9,
+                              Xs,
+                            )
+                          ),
+                        ),
+                        128,
+                      )),
+                    ],
+                    42,
+                    Gs,
+                  )),
+                  [[it, t.value]],
+                )
+              : e.type != "textarea"
+                ? he(
+                    (d(),
+                    _(
+                      "input",
+                      {
+                        key: 1,
+                        id: e.name,
+                        "onUpdate:modelValue":
+                          m[1] || (m[1] = (u) => (t.value = u)),
+                        type: e.type,
+                        name: e.name,
+                        placeholder: e.placeholder,
+                        disabled: e.disabled,
+                        maxlength: o(l),
+                        autocomplete: e.autocomplete,
+                        "data-lpignore": e.autocomplete == "off",
+                      },
+                      null,
+                      8,
+                      Qs,
+                    )),
+                    [[ct, t.value]],
+                  )
+                : e.type == "textarea"
+                  ? he(
+                      (d(),
+                      _(
+                        "textarea",
+                        {
+                          key: 2,
+                          id: e.name,
+                          "onUpdate:modelValue":
+                            m[2] || (m[2] = (u) => (t.value = u)),
+                          name: e.name,
+                          rows: e.rows,
+                          placeholder: e.placeholder,
+                          disabled: e.disabled,
+                          maxlength: o(l),
+                          autocomplete: e.autocomplete,
+                          "data-lpignore": e.autocomplete == "off",
+                        },
+                        null,
+                        8,
+                        eo,
+                      )),
+                      [[ut, t.value]],
+                    )
+                  : P("", !0),
+            x(ge, null, {
+              default: Q(() => [
+                e.error
+                  ? (d(),
+                    _(
+                      "div",
+                      to,
+                      H((e.errors && e.errors[e.error]) || e.error),
+                      1,
+                    ))
+                  : P("", !0),
+              ]),
+              _: 1,
+            }),
+          ],
+          2,
+        )
+      );
+    },
+  },
+  ce = W(oo, [["__scopeId", "data-v-5990ddb5"]]);
+async function ao(e) {
+  return new Promise((t, s) => {
+    setTimeout(() => {
+      t();
+    }, e * 1e3);
+  });
+}
+const ze = (e, t = null) => {
+    t || (t = {});
+    const s = { ...t };
+    return (
+      e &&
+        Object.keys(e).forEach((n) => {
+          const a = e[n],
+            { name: l, value: r, type: i } = a;
+          i !== "mention" && (s[l ?? n] = r);
+        }),
+      s
+    );
+  },
+  no = dt("form", {
+    state: () => ({ recaptchaLoaded: !1, forms: {}, submition: {} }),
+    getters: {
+      getForm() {
+        return (e) => this.forms[e];
+      },
+      getFormValues() {
+        return (e) => ze(this.forms[e]);
+      },
+      getFormSubmition() {
+        return (e) => this.submition[e];
+      },
+    },
+    actions: {
+      setFormFields({ id: e, fields: t }) {
+        ((this.forms = { ...this.forms, [e]: Ns(t) }),
+          (this.submition = { ...this.submition, [e]: Zs() }));
+      },
+      updateFormFields({ id: e, fields: t }) {
+        const s = this.forms[e];
+        s &&
+          Object.keys(t).forEach((n, a) => {
+            const l = t[n];
+            Object.keys(l).forEach((r) => {
+              s[n] && (s[n][r] = l[r]);
+            });
+          });
+      },
+      resetFormFields({ id: e }) {
+        const t = this.forms[e];
+        t &&
+          Object.keys(t).forEach((s, n) => {
+            const a = t[s];
+            ((a.value = a.defaultValue != null ? a.defaultValue : ""),
+              (a.error = null));
+          });
+      },
+      updateFormSubmition({ id: e, processing: t, response: s, error: n }) {
+        const a = this.submition[e];
+        a &&
+          (t != null && (a.processing = t === !0),
+          s != null && (a.response = s),
+          n != null && (a.error = n === !0));
+      },
+      updateRecaptchaStatus(e) {
+        this.recaptchaLoaded = e === !0;
+      },
+      async submitForm({ id: e, args: t, storeAction: s }) {
+        const n = this.forms[e];
+        if (!(!n || !s))
+          return (
+            (t = ze(n, t)),
+            s.match(/^submitFake/)
+              ? (console.log(e, t),
+                await ao(1),
+                s === "submitFakeError"
+                  ? { error: "unknown" }
+                  : s === "submitFakeErrorField"
+                    ? { error: !0, fields: { [Object.keys(n)[0]]: "format" } }
+                    : {})
+              : this[s]
+                ? await this[s](t)
+                : (console.log(`"${s}" action is undefined`),
+                  { error: "action_not_valid" })
+          );
+      },
+      async submitContactForm(e) {
+        var n, a;
+        console.log("forms/submitContactForm", e);
+        const t = ve();
+        let s;
+        try {
+          s = await mt.post(t.public.CONTACT_API_URL, e);
+        } catch (l) {
+          const r =
+            ((a = (n = l.response) == null ? void 0 : n.data) == null
+              ? void 0
+              : a.error) || l.message;
+          return (console.warn("forms/submitContactForm", l), { error: r });
+        }
+        return (console.log("forms/submitContactForm", s.data), s.data);
+      },
+    },
+  }),
+  lo = { class: "formBlock" },
+  ro = { key: 0, class: "formBlock__form" },
+  io = { class: "formBlock__splitWrapper" },
+  co = { class: "formBlock__submitWrapper" },
+  uo = { key: 0, class: "errorText" },
+  mo = { key: 1, class: "formBlock__success" },
+  fo = {
+    __name: "FormBlock",
+    props: {
+      texts: { type: Object, default: null },
+      recaptchaActivated: { type: Boolean, default: !0 },
+      keepDisableOnSuccess: { type: Boolean, default: !1 },
+    },
+    emits: ["submitting", "submitSuccess", "submitError"],
+    setup(e, { emit: t }) {
+      const s = no(),
+        n = t,
+        a = e,
+        l = A(() => {
+          var g, h, v, F, b, $;
+          return {
+            format:
+              ((h = (g = a.texts) == null ? void 0 : g.messages) == null
+                ? void 0
+                : h.error_field_format) || "Format",
+            required:
+              ((F = (v = a.texts) == null ? void 0 : v.messages) == null
+                ? void 0
+                : F.error_field_required) || "Required",
+            length:
+              (($ = (b = a.texts) == null ? void 0 : b.messages) == null
+                ? void 0
+                : $.error_field_length) || "Length",
+          };
+        }),
+        r = ft({
+          subject: "",
+          firstname: "",
+          lastname: "",
+          email: "",
+          message: "",
+        }),
+        i = {
+          id: "contact",
+          storeAction: "submitContactForm",
+          fields: [
+            { name: "subject", type: "select" },
+            { name: "firstname", type: "text" },
+            { name: "lastname", type: "text" },
+            { name: "email", type: "text", format: "email" },
+            { name: "message", type: "textarea" },
+          ],
+        },
+        m = p(!1),
+        u = p(!1),
+        y = p(!1),
+        f = p(!1),
+        w = p(),
+        M = p(),
+        T = p(),
+        B = A(() => s.getForm(i.id)),
+        k = A(() => s.getFormSubmition(i.id)),
+        R = A(() => {
+          var g;
+          return (
+            (f.value && a.keepDisableOnSuccess) ||
+            ((g = k.value) == null ? void 0 : g.processing) ||
+            (a.recaptchaActivated && !m.value)
+          );
+        });
+      (X(r, O),
+        X(T, () => {
+          var v;
+          const g = Math.max(
+            0,
+            ((v = T.value.getBoundingClientRect()) == null ? void 0 : v.top) -
+              te.scrollY,
+          );
+          te.scrollTo(-g + fe.dimensions.innerHeight * 0.2, 0.8);
+          const h = T.value.clientHeight;
+          I.to(w, {
+            value: h,
+            duration: 0.8,
+            ease: "expo.inOut",
+            onComplete: () => {
+              w.value = null;
+            },
+          });
+        }),
+        se(() => {
+          const { id: g } = i;
+          (s.setFormFields(i),
+            s.resetFormFields(g),
+            s.updateFormSubmition({ id: g, response: "" }),
+            O(),
+            a.recaptchaActivated && Y());
+        }),
+        He(() => {}));
+      function O() {
+        const { id: g } = i,
+          h = {};
+        for (const v in r) h[v] = { value: r[v] };
+        (s.updateFormFields({ id: g, fields: h }), (y.value = J()));
+      }
+      function S(g) {
+        (g.preventDefault(), C());
+      }
+      function C() {
+        const { id: g } = i;
+        if (R.value) return;
+        const h = je(B.value);
+        (s.updateFormSubmition({ id: g, response: "" }),
+          s.updateFormFields({ id: g, fields: Pe(h.fields[0]) }),
+          console.log("submitForm", h.errors),
+          !(h.errors[0] > 0) &&
+            ((u.value = !0),
+            n("submitting", g),
+            console.log("submit | ..."),
+            s.updateFormSubmition({ id: g, processing: !0 }),
+            L()
+              .then(() => {
+                var v, F;
+                (console.log("submit | success"),
+                  (w.value = M.value.clientHeight),
+                  (u.value = !1),
+                  (f.value = !0),
+                  s.updateFormSubmition({
+                    id: g,
+                    processing: !1,
+                    error: !1,
+                    response:
+                      ((F = (v = a.texts) == null ? void 0 : v.messages) == null
+                        ? void 0
+                        : F.success) || "",
+                  }),
+                  n("submitSuccess", g));
+              })
+              .catch((v) => {
+                var $, E;
+                (console.log("submit | error", v), (u.value = !1));
+                let F = null;
+                const b =
+                  ((E = ($ = a.texts) == null ? void 0 : $.messages) == null
+                    ? void 0
+                    : E.error_global) || "Error";
+                (v && v.fields
+                  ? (s.updateFormFields({ id: g, fields: Pe(v.fields) }),
+                    Object.keys(v.fields).filter(
+                      (G) => !Object.keys(B.value).includes(G),
+                    ).length > 0 && (F = b))
+                  : (F = b),
+                  s.updateFormSubmition({
+                    id: g,
+                    processing: !1,
+                    error: !0,
+                    response: F,
+                  }),
+                  n("submitError", g));
+              })));
+      }
+      async function L() {
+        const g = ve();
+        let h;
+        try {
+          h =
+            a.recaptchaActivated && typeof grecaptcha < "u"
+              ? await grecaptcha.execute(g.public.RECAPTCHA_API_KEY, {
+                  action: "form_submit",
+                })
+              : null;
+          const { id: v, storeAction: F } = i,
+            b = i.args || {};
+          h && (b.token = h);
+          const $ = await s.submitForm({ id: v, args: b, storeAction: F });
+          if ($ && $.error) return Promise.reject($);
+        } catch (v) {
+          return Promise.reject(v);
+        }
+      }
+      function Y() {
+        if (typeof grecaptcha < "u") {
+          j();
+          return;
+        }
+        const g = ve(),
+          h =
+            "https://www.google.com/recaptcha/api.js?onload={{callback}}&render={{key}}",
+          v = "onRecaptchaLoaded_" + Math.round(Math.random() * 1e3);
+        window[v] = j;
+        const F = document.createElement("script");
+        ((F.src = h
+          .replace("{{callback}}", v)
+          .replace("{{key}}", g.public.RECAPTCHA_API_KEY)),
+          document.body.appendChild(F));
+      }
+      function j() {
+        m.value = !0;
+      }
+      function J() {
+        if (!B.value) return !1;
+        const g = je(B.value);
+        let h = 0;
+        return (
+          Object.keys(g.fields[0]).forEach((v) => {
+            g.fields[0][v] === "required" && h++;
+          }),
+          h === 0
+        );
+      }
+      return (g, h) => (
+        d(),
+        _("div", lo, [
+          c(
+            "div",
+            {
+              ref_key: "$wrapper",
+              ref: M,
+              class: "formBlock__wrapper",
+              style: ue({ height: o(w) && `${o(w)}px` }),
+            },
+            [
+              x(
+                ge,
+                { name: "form-success-transition" },
+                {
+                  default: Q(() => {
+                    var v, F, b, $, E, U, G, Te, Fe, Ve, Ee;
+                    return [
+                      o(f)
+                        ? (d(),
+                          _("div", mo, [
+                            c(
+                              "div",
+                              { ref_key: "$success", ref: T },
+                              H(
+                                ((Ee = e.texts.messages) == null
+                                  ? void 0
+                                  : Ee.success) || "Success",
+                              ),
+                              513,
+                            ),
+                          ]))
+                        : (d(),
+                          _("form", ro, [
+                            (v = o(B)) != null &&
+                            v.subject &&
+                            (F = e.texts) != null &&
+                            F.subject
+                              ? (d(),
+                                V(
+                                  ce,
+                                  q(
+                                    {
+                                      key: 0,
+                                      modelValue: o(r).subject,
+                                      "onUpdate:modelValue":
+                                        h[0] ||
+                                        (h[0] = (ee) => (o(r).subject = ee)),
+                                    },
+                                    { ...o(B).subject, ...e.texts.subject },
+                                    { disabled: o(R), errors: o(l) },
+                                  ),
+                                  null,
+                                  16,
+                                  ["modelValue", "disabled", "errors"],
+                                ))
+                              : P("", !0),
+                            c("div", io, [
+                              (b = o(B)) != null &&
+                              b.firstname &&
+                              ($ = e.texts) != null &&
+                              $.firstname
+                                ? (d(),
+                                  V(
+                                    ce,
+                                    q(
+                                      {
+                                        key: 0,
+                                        modelValue: o(r).firstname,
+                                        "onUpdate:modelValue":
+                                          h[1] ||
+                                          (h[1] = (ee) =>
+                                            (o(r).firstname = ee)),
+                                      },
+                                      {
+                                        ...o(B).firstname,
+                                        ...e.texts.firstname,
+                                      },
+                                      { disabled: o(R), errors: o(l) },
+                                    ),
+                                    null,
+                                    16,
+                                    ["modelValue", "disabled", "errors"],
+                                  ))
+                                : P("", !0),
+                              (E = o(B)) != null &&
+                              E.lastname &&
+                              (U = e.texts) != null &&
+                              U.lastname
+                                ? (d(),
+                                  V(
+                                    ce,
+                                    q(
+                                      {
+                                        key: 1,
+                                        modelValue: o(r).lastname,
+                                        "onUpdate:modelValue":
+                                          h[2] ||
+                                          (h[2] = (ee) => (o(r).lastname = ee)),
+                                      },
+                                      { ...o(B).lastname, ...e.texts.lastname },
+                                      { disabled: o(R), errors: o(l) },
+                                    ),
+                                    null,
+                                    16,
+                                    ["modelValue", "disabled", "errors"],
+                                  ))
+                                : P("", !0),
+                            ]),
+                            (G = o(B)) != null &&
+                            G.email &&
+                            (Te = e.texts) != null &&
+                            Te.email
+                              ? (d(),
+                                V(
+                                  ce,
+                                  q(
+                                    {
+                                      key: 1,
+                                      modelValue: o(r).email,
+                                      "onUpdate:modelValue":
+                                        h[3] ||
+                                        (h[3] = (ee) => (o(r).email = ee)),
+                                    },
+                                    { ...o(B).email, ...e.texts.email },
+                                    { disabled: o(R), errors: o(l) },
+                                  ),
+                                  null,
+                                  16,
+                                  ["modelValue", "disabled", "errors"],
+                                ))
+                              : P("", !0),
+                            (Fe = o(B)) != null &&
+                            Fe.message &&
+                            (Ve = e.texts) != null &&
+                            Ve.message
+                              ? (d(),
+                                V(
+                                  ce,
+                                  q(
+                                    {
+                                      key: 2,
+                                      modelValue: o(r).message,
+                                      "onUpdate:modelValue":
+                                        h[4] ||
+                                        (h[4] = (ee) => (o(r).message = ee)),
+                                    },
+                                    { ...o(B).message, ...e.texts.message },
+                                    { disabled: o(R), errors: o(l) },
+                                  ),
+                                  null,
+                                  16,
+                                  ["modelValue", "disabled", "errors"],
+                                ))
+                              : P("", !0),
+                            c("div", co, [
+                              x(
+                                be,
+                                {
+                                  class: Z([
+                                    "submitCta",
+                                    { disabled: !o(y) || o(R) },
+                                  ]),
+                                  text: e.texts.submitCta,
+                                  "is-input": !0,
+                                  onClick: S,
+                                },
+                                null,
+                                8,
+                                ["class", "text"],
+                              ),
+                              x(ge, null, {
+                                default: Q(() => [
+                                  o(k) && o(k).response && o(k).error
+                                    ? (d(), _("div", uo, H(o(k).response), 1))
+                                    : P("", !0),
+                                ]),
+                                _: 1,
+                              }),
+                            ]),
+                          ])),
+                    ];
+                  }),
+                  _: 1,
+                },
+              ),
+            ],
+            4,
+          ),
+        ])
+      );
+    },
+  },
+  po = W(fo, [["__scopeId", "data-v-d02bfb2c"]]),
+  ho = { class: "BottomContactBlock" },
+  go = { class: "leftBlock" },
+  vo = { class: "rightBlock" },
+  bo = { class: "rightBlock_indication" },
+  yo = {
+    __name: "BottomContactBlock",
+    props: {
+      indication: { type: String, default: null },
+      title: { type: String, default: null },
+      button: { type: Object, default: null },
+      show: { type: Boolean, default: !1 },
+    },
+    setup(e) {
+      const t = p(),
+        s = z(t);
+      return (n, a) => (
+        d(),
+        _("section", ho, [
+          c("div", go, [x(We, { class: "leftBlock_logo" })]),
+          c("div", vo, [
+            c("p", bo, H(e.indication), 1),
+            x(
+              ie,
+              {
+                ref_key: "text1",
+                ref: t,
+                class: "rightBlock_cta",
+                show: !o(s).underViewport.value,
+                tag: "h2",
+                text: e.title,
+              },
+              null,
+              8,
+              ["show", "text"],
+            ),
+            x(
+              be,
+              {
+                text: e.button.label,
+                url: e.button.url,
+                class: "rightBlock_button",
+              },
+              null,
+              8,
+              ["text", "url"],
+            ),
+          ]),
+        ])
+      );
+    },
+  },
+  ko = W(yo, [["__scopeId", "data-v-540e54ec"]]),
+  _o = { class: "edgesWrapper" },
+  xo = {
+    __name: "ContactPage",
+    props: { page: { type: Object, default: null } },
+    setup(e) {
+      let t = console.log.bind(
+        console,
+        "%c - ContactPage.%s() - ",
+        "background-color: lightcoral; color: black",
+      );
+      Se.isProduction && (t = () => {});
+      const s = e,
+        n = ye(),
+        a = oe(),
+        l = ke(),
+        { $webglApp: r } = Me(),
+        [i, m] = _e(null),
+        u = A(() => s.page.url),
+        y = p(!1);
+      let f;
+      (X(() => n.ready, w),
+        xe(() => {
+          n.ready && w();
+        }),
+        se(() => {
+          (we.addViewAssetsToPreload("home"),
+            a.updateMainLoader({ hideOnComplete: !1 }),
+            y.value && M());
+        }));
+      function w() {
+        var k;
+        ((f =
+          (k = r == null ? void 0 : r.viewManager.get("home")) == null
+            ? void 0
+            : k.instance),
+          (f.viewPath = u.value),
+          y.value && M());
+      }
+      function M() {
+        if (!i.value || !f)
+          return (
+            (y.value = !0),
+            t("showFailed", "pageElt", !!i.value, "homeView", !!f),
+            I.timeline()
+          );
+        ((y.value = !1), t("show"), te.setDomTarget(i.value.$el, u.value));
+        const k = I.timeline();
+        return (
+          k.fromTo(
+            i.value.$el,
+            { autoAlpha: 0 },
+            { autoAlpha: 1, duration: 0.7, ease: "sine.inOut" },
+            0,
+          ),
+          k.call(() => te.onWindowResize(), null),
+          k
+        );
+      }
+      function T() {
+        t("hide");
+        const k = I.timeline({ onComplete: B });
+        return (
+          k.to(
+            i.value.$el,
+            { autoAlpha: 0, duration: 0.15, ease: "sine.inOut" },
+            0,
+          ),
+          k
+        );
+      }
+      function B() {
+        (t("onHideComplete"), m());
+      }
+      return (
+        Be({
+          enter: M,
+          leave: T,
+          mode: "out-in",
+          name: l == null ? void 0 : l.path,
+          type: "page",
+        }),
+        (k, R) => (
+          d(),
+          V(
+            $e,
+            {
+              ref_key: "pageElt",
+              ref: i,
+              class: Z({
+                contactPage: !0,
+                hidden:
+                  o(a).menu.isOpen ||
+                  o(a).menu.isOpenDelayed ||
+                  o(a).mainLoader.visible,
+              }),
+              page: e.page,
+            },
+            {
+              default: Q(() => [
+                c("div", _o, [
+                  x(
+                    Hs,
+                    q(e.page.hero, {
+                      show: !(o(a).menu.isOpen || o(a).mainLoader.visible),
+                    }),
+                    null,
+                    16,
+                    ["show"],
+                  ),
+                  x(po, { texts: e.page.form }, null, 8, ["texts"]),
+                  x(
+                    ko,
+                    q(e.page.push, {
+                      show: !(o(a).menu.isOpen || o(a).mainLoader.visible),
+                    }),
+                    null,
+                    16,
+                    ["show"],
+                  ),
+                ]),
+                x(Ce),
+              ]),
+              _: 1,
+            },
+            8,
+            ["class", "page"],
+          )
+        )
+      );
+    },
+  },
+  To = W(xo, [["__scopeId", "data-v-2dcdfd6e"]]),
+  wo = { class: "edgesWrapper" },
+  Bo = { class: "heroBlock" },
+  $o = ["innerHTML"],
+  So = {
+    __name: "TermsPage",
+    props: { page: { type: Object, default: null } },
+    setup(e) {
+      let t = console.log.bind(
+        console,
+        "%c - termsPage.%s() - ",
+        "background-color: lightcoral; color: black",
+      );
+      Se.isProduction && (t = () => {});
+      const s = e,
+        n = ye(),
+        a = oe(),
+        l = ke(),
+        { $webglApp: r } = Me(),
+        [i, m] = _e(null),
+        u = A(() => s.page.url),
+        y = p(!1);
+      let f;
+      (X(() => n.ready, w),
+        xe(() => {
+          n.ready && w();
+        }),
+        se(() => {
+          (we.addViewAssetsToPreload("home"),
+            a.updateMainLoader({ hideOnComplete: !1 }),
+            y.value && M());
+        }));
+      function w() {
+        var k;
+        ((f =
+          (k = r == null ? void 0 : r.viewManager.get("home")) == null
+            ? void 0
+            : k.instance),
+          (f.viewPath = u.value),
+          y.value && M());
+      }
+      function M() {
+        if (!i.value || !f)
+          return (
+            (y.value = !0),
+            t("showFailed", "pageElt", !!i.value, "homeView", !!f),
+            I.timeline()
+          );
+        ((y.value = !1), t("show"), te.setDomTarget(i.value.$el, u.value));
+        const k = I.timeline();
+        return (
+          k.fromTo(
+            i.value.$el,
+            { autoAlpha: 0 },
+            { autoAlpha: 1, duration: 0.7, ease: "sine.inOut" },
+            0,
+          ),
+          k
+        );
+      }
+      function T() {
+        t("hide");
+        const k = I.timeline({ onComplete: B });
+        return (
+          k.to(
+            i.value.$el,
+            { autoAlpha: 0, duration: 0.15, ease: "sine.inOut" },
+            0,
+          ),
+          k
+        );
+      }
+      function B() {
+        (t("onHideComplete"), m());
+      }
+      return (
+        Be({
+          enter: M,
+          leave: T,
+          mode: "out-in",
+          name: l == null ? void 0 : l.path,
+          type: "page",
+        }),
+        (k, R) => (
+          d(),
+          V(
+            $e,
+            {
+              ref_key: "pageElt",
+              ref: i,
+              class: Z({
+                termsPage: !0,
+                hidden:
+                  o(a).menu.isOpen ||
+                  o(a).menu.isOpenDelayed ||
+                  o(a).mainLoader.visible,
+              }),
+              page: e.page,
+            },
+            {
+              default: Q(() => [
+                c("div", wo, [
+                  c("section", Bo, [
+                    x(
+                      Re,
+                      { class: "title", content: e.page.title, show: !0 },
+                      null,
+                      8,
+                      ["content"],
+                    ),
+                  ]),
+                  c(
+                    "section",
+                    { class: "contentBlock", innerHTML: e.page.body },
+                    null,
+                    8,
+                    $o,
+                  ),
+                ]),
+                x(Ce),
+              ]),
+              _: 1,
+            },
+            8,
+            ["class", "page"],
+          )
+        )
+      );
+    },
+  },
+  Fo = So;
+export { Co as A, To as C, Fo as T };

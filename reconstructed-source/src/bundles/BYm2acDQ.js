@@ -1,0 +1,25 @@
+import { u as s } from "./DxwaTRwO.js";
+import { u as n, w as c, c as p, b as _, o as m } from "./DzIV7Ypb.js";
+import { H as u } from "./Dfrb24yg.js";
+import "./BwkFD7S1.js";
+const k = {
+  __name: "index",
+  async setup(i) {
+    let e, a;
+    const t = n(),
+      {
+        data: r,
+        refresh: l,
+        pending: f,
+        error: o,
+      } = (([e, a] = c(() => s(`${t.lang}_home`, () => t.getPage("")))),
+      (e = await e),
+      a(),
+      e);
+    return (
+      !r.value || o.value,
+      (g, d) => (m(), p(u, { page: _(r) }, null, 8, ["page"]))
+    );
+  },
+};
+export { k as default };
