@@ -1,0 +1,23 @@
+{
+  "skill_name": "clone-anything",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Clone https://www.hatom.com/ fully and run it locally. Include all 3D assets and scripts.",
+      "expected_output": "A local clone directory with all assets, zero 404s on home page load, README.md with run instructions",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I have an Electron app installed at C:/Program Files/MyApp. Extract and analyze it with REA and give me a runnable copy.",
+      "expected_output": "An extracted app directory analyzed with REA, with all resources present",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Mirror a Nuxt site at https://example.com, including all locale routes and payloads.",
+      "expected_output": "A clone with /, /fr/, /zh/ routes and their _payload.json files, zero 404s",
+      "files": []
+    }
+  ]
+}
